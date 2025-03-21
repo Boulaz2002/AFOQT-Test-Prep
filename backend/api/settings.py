@@ -39,7 +39,14 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'rest_framework',  # Django REST framework
     'quiz',  # Quiz app
+    'rest_framework_simplejwt',  # JWT authentication
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -76,11 +83,16 @@ WSGI_APPLICATION = "api.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'afoqt_db1',
+        'USER': 'afoqt_user',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',  # Change to your DB host if running remotely
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
